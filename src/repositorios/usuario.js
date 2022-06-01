@@ -84,11 +84,7 @@ class Usuario{
         const sql = "SELECT * FROM Usuarios WHERE nomeCompleto = ?";
         return query(sql, nome)
         .then(data=>{
-            if (data.length > 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return data.length > 0;
         }); 
              
     }

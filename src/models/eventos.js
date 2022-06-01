@@ -143,10 +143,7 @@ class Eventos{
             return false;
           }
           const response = await fetch(url);
-          if (response.status !== 200) {
-            return false;
-          }
-          return true;
+          return response.status !== 200;
 
         } catch {
           return false;

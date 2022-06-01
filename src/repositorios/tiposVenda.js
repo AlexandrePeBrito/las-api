@@ -36,11 +36,7 @@ class TiposVendas{
         const sql = "SELECT * FROM TiposVendas WHERE descricao like ?";
         return query(sql, descricao)
         .then(data=>{
-            if (data.length > 0) { 
-                return true;
-            }
-
-            return false;
+            return data.length > 0;  
         }); 
     }
 }
