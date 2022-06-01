@@ -184,8 +184,9 @@ class Usuarios {
   excluir(id, res) {
     if(repositorio.buscarPorId(id)){
       return repositorio.excluir(id, res);
+    }else{
+      return false;
     }
-    return false;
   }
 
   //ok
