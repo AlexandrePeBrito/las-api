@@ -148,7 +148,6 @@ class Eventos{
           } else {
             return true;
           }
-
         } catch {
           return false;
         }
