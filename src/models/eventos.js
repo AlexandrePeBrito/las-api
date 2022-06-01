@@ -51,7 +51,7 @@ class Eventos{
         
         if (existemErros) {
             console.log(erros);
-            throw { erroApp: erros };
+            throw new Error({ erroApp: erros });
         } else {
             const resp = await repositorio.adicionar(evento);
             return { id: resp.insertId, ...evento };
@@ -96,7 +96,7 @@ class Eventos{
         
         if (existemErros) {
             console.log(erros);
-            throw { erroApp: erros };
+            throw new Error({ erroApp: erros });
         } else {
             const resp = await repositorio.alterar(id, valores);
             return { id: resp.insertId, ...valores };
@@ -129,10 +129,9 @@ class Eventos{
         const dataInicioEvento =moment(dataInicio).format("YYYY-MM-DD");
         const dataFimEvento = moment(dataFim).format("YYYY-MM-DD");
         
-        const isDataEhValida= moment(dataInicioEvento).isSameOrAfter(dataCricaoEvento) &&
+        return moment(dataInicioEvento).isSameOrAfter(dataCricaoEvento) &&
         moment(dataFimEvento).isSameOrAfter(dataInicioEvento);
 
-        return isDataEhValida;
     }
 
     async validarURLFotoPerfil(url) {
@@ -146,9 +145,9 @@ class Eventos{
           const response = await fetch(url);
           if (response.status !== 200) {
             return false;
-          } else {
-            return true;
           }
+          return true;
+
         } catch {
           return false;
         }

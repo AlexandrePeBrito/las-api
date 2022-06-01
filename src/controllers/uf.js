@@ -2,7 +2,7 @@ const uf = require("../models/uf");
 
 module.exports = (app) => {
     
-    app.get("/uf", (req, res) => {
+    app.get("/uf", (_req, res) => {
         uf.listar(res)
           .then((resultados) => res.status(200).json(resultados))
           .catch((erros) => res.status(400).json(erros));

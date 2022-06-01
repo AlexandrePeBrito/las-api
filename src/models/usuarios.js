@@ -173,7 +173,7 @@ class Usuarios {
 
     if (existemErros) {
       console.log(erros);
-      throw { erroApp: erros };
+      throw new Error({ erroApp: erros });
     } else {
       const resp = await repositorio.alterar(id, valores);
       return { id: resp.insertId, ...valores };
@@ -244,7 +244,7 @@ class Usuarios {
 
     if (existemErros) {
       console.log(erros);
-      throw { erroApp: erros };
+      throw new Error({ erroApp: erros });
     } else {
       const resp =  repositorio.alterarDadosPessoais(id, valores);
       return { id: resp.insertId, ...valores };
@@ -287,9 +287,9 @@ class Usuarios {
       const response = await fetch(url);
       if (response.status !== 200) {
         return false;
-      } else {
-        return true;
-      }
+      } 
+      return true;
+
     } catch {
       return false;
     }
@@ -303,9 +303,7 @@ class Usuarios {
     const dataAtual = moment().format("YYYY-MM-DD");
     const dataNascimento =moment(data).format("YYYY-MM-DD");
     
-    const isDataEhValida= moment(dataNascimento).isBefore(dataAtual);
-
-    return isDataEhValida;
+    return moment(dataNascimento).isBefore(dataAtual);
   }
 }
 

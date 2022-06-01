@@ -38,9 +38,9 @@ class TiposVendas{
         .then(data=>{
             if (data.length > 0) { 
                 return true;
-            } else {
-                return false;
             }
+
+            return false;
         }); 
     }
 }

@@ -25,7 +25,7 @@ class TiposVendas{
 
         if (existemErros) {
             console.log(erros);
-            throw { erroApp: erros };
+            throw new Error({ erroApp: erros });
           } else {
             const resp = await repositorio.adicionar(tipoVendas);
             return { id: resp.insertId, ...tipoVendas };
@@ -56,7 +56,7 @@ class TiposVendas{
 
         if (existemErros) {
             console.log(erros);
-            throw { erroApp: erros };
+            throw new Error({ erroApp: erros });
         } else {
             const resp = await repositorio.alterar(id, valores);
             return { id: resp.insertId, ...valores };
