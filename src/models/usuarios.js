@@ -90,7 +90,7 @@ class Usuarios {
 
     if (existemErros) {
       console.log(erros);
-      throw { erroApp: erros };
+      throw new Error({ erroApp: erros });
     } else {
       const resp = await repositorio.adiciona(usuario);
       return { id: resp.insertId, ...usuario };
@@ -279,7 +279,7 @@ class Usuarios {
   async validarURLFotoPerfil(url) {
     try {
       const regex =
-        /https?:\/\/(www.)?[-a-zA-Z0-9@:%.+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%+.~#?&//=]*)/gm;
+        /https?:\/\/(www.)?[-a-zA-Z0-9@:%.+~#=]{1,256}.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%+.~#?&=]*)/gm;
       const verificaUrl = url.match(regex);
       if (!verificaUrl) {
         return false;
