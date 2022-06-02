@@ -78,7 +78,7 @@ module.exports = (app) => {
       .catch((erros) => res.status(400).json(erros));
   });
 
-  //executa tudo mas retorna error
+  
   app.put("/usuarios/:id/contatos", (req, res) => {
     const id = parseInt(req.params.id);
     const valores = req.body;
@@ -87,7 +87,7 @@ module.exports = (app) => {
       .catch((erros) => res.status(400).json(erros));
   });
   
-  //executa tudo mas retorna error
+  
   app.put("/usuarios/:id/senha", (req, res) => {
     const id = parseInt(req.params.id);
     const valores = req.body;
@@ -105,7 +105,7 @@ module.exports = (app) => {
       .catch((erros) => res.status(400).json(erros));
   });
 
-  //executa tudo mas retorna error
+  
   app.put("/usuarios/:id/endereco", (req, res) => {
     const id = parseInt(req.params.id);
     const valores = req.body;

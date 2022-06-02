@@ -125,16 +125,6 @@ describe("API de Usuarios", () => {
     expect(resp.statusCode).toBe(400);
   });
   
-  /*test("Alterar Dados pessoais do Usuario",async () => {
-    const resp = await request.put("/usuarios/1/dados-pessoais").send({
-        "nomeCompleto": "aaaa",
-        "rg": "07828625510",
-        "cpf": "07828625510",
-        "dataNascimento": "1999-10-05"
-      });
-    expect(resp.statusCode).toBe(200);
-  });*/
-
   test("Listar Contatos do Usuario",async () => {
     const resp = await request.get("/usuarios/1/contatos");
     expect(resp.statusCode).toBe(200);
