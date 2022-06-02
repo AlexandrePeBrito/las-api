@@ -32,7 +32,7 @@ module.exports = (app) => {
         .then(() => res.json({ id, ...valores }))
         .catch((erros) => res.status(400).json(erros));
     });
-    
+    //
     //ok
     app.delete("/eventos/:id", (req, res) => {
       const id = parseInt(req.params.id);
