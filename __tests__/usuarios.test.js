@@ -115,15 +115,25 @@ describe("API de Usuarios", () => {
   );
   });
 
-  test("Alterar Dados pessoais do Usuario",async () => {
+  test("Alterar Dados Pessoais do Usuario dados invalidos",async () => {
     const resp = await request.put("/usuarios/1/dados-pessoais").send({
-        "nomeCompleto": "Maiure Gomes Britoa",
-        "rg": "123321 SSP BA",
-        "cpf": "45340648028",
+      "id":1,
+      "telefone": "7132121422",
+      "celular": "71999663589",
+      "email": "etsvaldo@gmail.com"
+    });
+    expect(resp.statusCode).toBe(400);
+  });
+  
+  /*test("Alterar Dados pessoais do Usuario",async () => {
+    const resp = await request.put("/usuarios/1/dados-pessoais").send({
+        "nomeCompleto": "aaaa",
+        "rg": "07828625510",
+        "cpf": "07828625510",
         "dataNascimento": "1999-10-05"
       });
     expect(resp.statusCode).toBe(200);
-  });
+  });*/
 
   test("Listar Contatos do Usuario",async () => {
     const resp = await request.get("/usuarios/1/contatos");
