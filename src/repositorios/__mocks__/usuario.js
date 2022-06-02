@@ -47,6 +47,9 @@ class Usuario {
         return Promise.resolve(usuarioSelecionado);
     }
 
+    alterarDadosPessoais(id, valores){
+        return Promise.resolve(usuariosMock && [valores,id]);
+    }
     
     //ok
     listarContatos(id){
