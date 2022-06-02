@@ -1,7 +1,8 @@
 [
     {
         "id": 1,
-        "nomeCompleto": "Alexandre",
+        "nome":"Alexandre",
+        "nomeCompleto": "Alexandre Brito",
         "rg": "1357174500",
         "cpf": "07828625510",
         "dataNascimento": "1999-10-05",
@@ -18,7 +19,8 @@
     },
     {
         "id": 2,
-        "nomeCompleto": "Maiure",
+        "nome":"Maiure",
+        "nomeCompleto": "Maiure Brito",
         "rg": "1357174500",
         "cpf": "07828625510",
         "dataNascimento": "1999-10-05",
@@ -35,7 +37,8 @@
     },
     {
         "id": 3,
-        "nomeCompleto": "Zelda",
+        "nome":"Zelda",
+        "nomeCompleto": "Zelda Brito",
         "rg": "1357174500",
         "cpf": "07828625510",
         "dataNascimento": "1999-10-05",

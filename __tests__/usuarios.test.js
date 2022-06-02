@@ -13,54 +13,18 @@ describe("API de Usuarios", () => {
     expect(resp.body).toEqual([
       {
         "id": 1,
-        "nomeCompleto": "Alexandre",
-        "rg": "1357174500",
-        "cpf": "07828625510",
-        "dataNascimento": "1999-10-05",
-        "telefone": "7132121422",
-        "celular": "71999663589",
-        "email": "etsvaldo@gmail.com",
-        "urlFotoPerfil": "https://randomuser.me/api/portraits/women/55.jpg",
-        "senha": "321123a",
-        "cep": "43700000",
-        "endereco": "rua dois de julho",
-        "numero": 256,
-        "complemento": "",
-        "bairro": "cia 30"
+        "nome":"Alexandre",
+        "urlFotoPerfil": "https://randomuser.me/api/portraits/women/55.jpg"
       },
       {
         "id": 2,
-        "nomeCompleto": "Maiure",
-        "rg": "1357174500",
-        "cpf": "07828625510",
-        "dataNascimento": "1999-10-05",
-        "telefone": "7132121422",
-        "celular": "71999663589",
-        "email": "etsvaldo@gmail.com",
-        "urlFotoPerfil": "https://randomuser.me/api/portraits/women/55.jpg",
-        "senha": "321123a",
-        "cep": "43700000",
-        "endereco": "rua dois de julho",
-        "numero": 256,
-        "complemento": "",
-        "bairro": "cia 30"
+        "nome":"Maiure",
+        "urlFotoPerfil": "https://randomuser.me/api/portraits/women/55.jpg"
       },
       {
         "id": 3,
-        "nomeCompleto": "Zelda",
-        "rg": "1357174500",
-        "cpf": "07828625510",
-        "dataNascimento": "1999-10-05",
-        "telefone": "7132121422",
-        "celular": "71999663589",
-        "email": "etsvaldo@gmail.com",
-        "urlFotoPerfil": "https://randomuser.me/api/portraits/women/55.jpg",
-        "senha": "321123a",
-        "cep": "43700000",
-        "endereco": "rua dois de julho",
-        "numero": 256,
-        "complemento": "",
-        "bairro": "cia 30"
+        "nome":"Zelda",
+        "urlFotoPerfil": "https://randomuser.me/api/portraits/women/55.jpg"
       }
   ]);
   });
@@ -72,21 +36,9 @@ describe("API de Usuarios", () => {
     expect(resp.body).toEqual(
       {
         "id": 1,
-        "nomeCompleto": "Alexandre",
-        "rg": "1357174500",
-        "cpf": "07828625510",
-        "dataNascimento": "1999-10-05",
-        "telefone": "7132121422",
-        "celular": "71999663589",
-        "email": "etsvaldo@gmail.com",
-        "urlFotoPerfil": "https://randomuser.me/api/portraits/women/55.jpg",
-        "senha": "321123a",
-        "cep": "43700000",
-        "endereco": "rua dois de julho",
-        "numero": 256,
-        "complemento": "",
-        "bairro": "cia 30"
-    }
+        "nome":"Alexandre",
+        "urlFotoPerfil": "https://randomuser.me/api/portraits/women/55.jpg"
+      }
     );
   });
 
@@ -100,75 +52,31 @@ describe("API de Usuarios", () => {
   test("Adicionar Usuario com dados Validos",async () => {
     const resp = await request.post("/usuarios").send(
       {
-        "nomeCompleto": "Leonardo",
-        "rg": "1357174500",
-        "cpf": "07828625510",
-        "dataNascimento": "1999-10-05",
-        "telefone": "7132121422",
-        "celular": "71999663589",
-        "email": "etsvaldo@gmail.com",
-        "urlFotoPerfil": "https://randomuser.me/api/portraits/men/50.jpg",
-        "senha": "321123a",
-        "cep": "43700000",
-        "endereco": "rua dois de julho",
-        "numero": 256,
-        "complemento": "",
-        "bairro": "cia 30"
+        "id": 12345,
+        "nome": "Paulo",
+        "urlFotoPerfil": "https://randomuser.me/api/portraits/men/50.jpg"
     });
     expect(resp.statusCode).toBe(200);
     expect(resp.body).toEqual(
       {
-      "id":90,
-      "nomeCompleto": "Leonardo",
-      "rg": "1357174500",
-      "cpf": "07828625510",
-      "dataNascimento": "1999-10-05",
-      "telefone": "7132121422",
-      "celular": "71999663589",
-      "email": "etsvaldo@gmail.com",
-      "urlFotoPerfil": "https://randomuser.me/api/portraits/men/50.jpg",
-      "senha": "321123a",
-      "cep": "43700000",
-      "endereco": "rua dois de julho",
-      "numero": 256,
-      "complemento": "",
-      "bairro": "cia 30"
+        "id": 12345,
+        "nome": "Paulo",
+        "urlFotoPerfil": "https://randomuser.me/api/portraits/men/50.jpg"
     });
   });
 
   test("Alterar Usuario",async () => {
-    const resp = await request.put("/usuarios/2").send({
-        "nomeCompleto": "Maiure Brito",
-        "rg": "1357174500",
-        "cpf": "07828625510",
-        "dataNascimento": "1999-10-05",
-        "telefone": "7132121422",
-        "celular": "71999663589",
-        "email": "etsvaldo@gmail.com",
-        "urlFotoPerfil": "https://randomuser.me/api/portraits/men/50.jpg",
-        "senha": "321123a",
-        "cep": "43700000",
-        "endereco": "rua dois de julho",
-        "numero": 256,
-        "complemento": "",
-        "bairro": "cia 30"
-    });
+    const resp = await request.put("/usuarios/2").send(
+      {
+        "id": 12345,
+        "nome": "Paulo Silva",
+        "urlFotoPerfil": "https://randomuser.me/api/portraits/men/50.jpg"
+      });
     expect(resp.statusCode).toBe(200);
     expect(resp.body).toEqual({
-        "nomeCompleto": "Maiure Brito",
-        "rg": "1357174500",
-        "cpf": "07828625510",
-        "dataNascimento": "1999-10-05",
-        "telefone": "7132121422",
-        "celular": "71999663589",
-        "email": "etsvaldo@gmail.com",
-        "urlFotoPerfil": "https://randomuser.me/api/portraits/men/50.jpg",
-        "senha": "321123a",
-        "cep": "43700000",
-        "endereco": "rua dois de julho",
-        "numero": 256,
-        "complemento": "",
-        "bairro": "cia 30"
+      "id": 12345,
+      "nome": "Paulo Silva",
+      "urlFotoPerfil": "https://randomuser.me/api/portraits/men/50.jpg"
     });
   });
 
@@ -187,20 +95,8 @@ describe("API de Usuarios", () => {
     expect(resp.body).toEqual(
       {
         "id": 3,
-        "nomeCompleto": "Zelda",
-        "rg": "1357174500",
-        "cpf": "07828625510",
-        "dataNascimento": "1999-10-05",
-        "telefone": "7132121422",
-        "celular": "71999663589",
-        "email": "etsvaldo@gmail.com",
+        "nome": "Zelda",
         "urlFotoPerfil": "https://randomuser.me/api/portraits/women/55.jpg",
-        "senha": "321123a",
-        "cep": "43700000",
-        "endereco": "rua dois de julho",
-        "numero": 256,
-        "complemento": "",
-        "bairro": "cia 30"
     }
   );
   });
@@ -211,7 +107,7 @@ describe("API de Usuarios", () => {
     expect(resp.body).toEqual(
       {
         "id": 1,
-        "nomeCompleto": "Alexandre",
+        "nomeCompleto": "Alexandre Brito",
         "rg": "1357174500",
         "cpf": "07828625510",
         "dataNascimento": "1999-10-05"
@@ -220,20 +116,13 @@ describe("API de Usuarios", () => {
   });
 
   test("Alterar Dados pessoais do Usuario",async () => {
-    const resp = await request.put("/usuarios/2/dados-pessoais").send({
-      "nomeCompleto": "Maiure Brito",
-      "rg": "1357174500",
-      "cpf": "07828625510",
-      "dataNascimento": "1999-10-05"
-    });
+    const resp = await request.put("/usuarios/1/dados-pessoais").send({
+        "nomeCompleto": "Maiure Gomes Britoa",
+        "rg": "123321 SSP BA",
+        "cpf": "45340648028",
+        "dataNascimento": "1999-10-05"
+      });
     expect(resp.statusCode).toBe(200);
-    expect(resp.body).toEqual({
-      "id": 2,
-      "nomeCompleto": "Maiure Brito",
-      "rg": "1357174500",
-      "cpf": "07828625510",
-      "dataNascimento": "1999-10-05"
-  });
   });
 
   test("Listar Contatos do Usuario",async () => {
@@ -268,12 +157,12 @@ describe("API de Usuarios", () => {
 
   test("Alterar Senha do Usuario",async () => {
     const resp = await request.put("/usuarios/2/senha").send({
-    "senha": "321"
+    "senha": "admin"
     });
     expect(resp.statusCode).toBe(200);
     expect(resp.body).toEqual({
       "id": 2,
-      "senha": "321"
+      "senha": "admin"
     });
   });
 

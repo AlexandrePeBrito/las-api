@@ -23,11 +23,6 @@ class TiposVenda{
     excluir(id){
         return Promise.resolve(tipoVendasMock && id);
     }
-    /*
-    //
-    adiciona(tipoVenda){
-        return Promise.resolve(tipoVenda && {insertId:90});
-    }
-    */
+    
 }
 module.exports = new TiposVenda();

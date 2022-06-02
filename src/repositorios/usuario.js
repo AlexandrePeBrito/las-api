@@ -34,7 +34,7 @@ class Usuario{
     //ok
     buscarPorNome(nome){
         nome = "%" + nome + "%";
-        const sql = "SELECT * FROM Usuarios WHERE nomeCompleto like ?";
+        const sql = "SELECT id,nome,urlFotoPerfil FROM Usuarios WHERE nome like ?";
         return query(sql, nome);
     }
 

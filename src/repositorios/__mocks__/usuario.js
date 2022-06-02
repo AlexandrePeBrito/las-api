@@ -3,12 +3,17 @@ const usuariosMock = require("./usuarios");
 class Usuario {
     //ok
     listar() {
-        return Promise.resolve(usuariosMock);
+        // eslint-disable-next-line no-unused-vars
+        const usuarios = usuariosMock.map(({ nomeCompleto, rg, cpf, dataNascimento, telefone, celular, email, senha, cep, endereco, numero, complemento, bairro, ...demais }) => demais);
+        return Promise.resolve(usuarios);
     }
 
      //ok
     buscarPorId(id) {
-        return Promise.resolve(usuariosMock.find((usuario) => usuario.id === id));
+        // eslint-disable-next-line no-unused-vars
+        const usuarios = usuariosMock.map(({ nomeCompleto, rg, cpf, dataNascimento, telefone, celular, email, senha, cep, endereco, numero, complemento, bairro, ...demais }) => demais);
+        const usuarioSelecionado= (usuarios.find((usuario) => usuario.id === id));
+        return Promise.resolve(usuarioSelecionado);
     }
   
     //ok
@@ -28,26 +33,25 @@ class Usuario {
 
     //ok
     buscarPorNome(nome){
-        return Promise.resolve(usuariosMock.find((usuario) => usuario.nomeCompleto === nome));
+        // eslint-disable-next-line no-unused-vars
+        const usuarios = usuariosMock.map(({ nomeCompleto, rg, cpf, dataNascimento, telefone, celular, email, senha, cep, endereco, numero, complemento, bairro, ...demais }) => demais);
+        const usuarioSelecionado= (usuarios.find((usuario) => usuario.nome === nome));
+        return Promise.resolve(usuarioSelecionado);
     }
 
     //ok
     listarDadosPessoais(id){
         // eslint-disable-next-line no-unused-vars
-        const usuarios = usuariosMock.map(({ telefone, celular, email, urlFotoPerfil, senha, cep, endereco, numero, complemento, bairro, ...demais }) => demais);      
+        const usuarios = usuariosMock.map(({ nome, telefone, celular, email, urlFotoPerfil, senha, cep, endereco, numero, complemento, bairro, ...demais }) => demais);      
         const usuarioSelecionado= (usuarios.find((usuario) => usuario.id === id));
         return Promise.resolve(usuarioSelecionado);
     }
-    
-    //ok
-    alterarDadosPessoais(id, valores){
-        return Promise.resolve(usuariosMock && [valores,id]);
-    }
 
+    
     //ok
     listarContatos(id){
         // eslint-disable-next-line no-unused-vars
-        const usuarios = usuariosMock.map(({nomeCompleto, rg, cpf, dataNascimento, urlFotoPerfil, senha, cep, endereco, numero, complemento, bairro, ...demais }) => demais);      
+        const usuarios = usuariosMock.map(({nome, nomeCompleto, rg, cpf, dataNascimento, urlFotoPerfil, senha, cep, endereco, numero, complemento, bairro, ...demais }) => demais);      
         const usuarioSelecionado= (usuarios.find((usuario) => usuario.id === id));
         return Promise.resolve(usuarioSelecionado);
     }
@@ -65,7 +69,7 @@ class Usuario {
     //ok
     listarEndereco(id){
         // eslint-disable-next-line no-unused-vars
-        const usuarios = usuariosMock.map(({nomeCompleto, rg, cpf, dataNascimento, telefone, celular, email, urlFotoPerfil, senha, ...demais }) => demais);      
+        const usuarios = usuariosMock.map(({nome, nomeCompleto, rg, cpf, dataNascimento, telefone, celular, email, urlFotoPerfil, senha, ...demais }) => demais);      
         const usuarioSelecionado= (usuarios.find((usuario) => usuario.id === id));
         return Promise.resolve(usuarioSelecionado);
     }
