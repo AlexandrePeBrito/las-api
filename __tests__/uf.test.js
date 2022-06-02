@@ -8,7 +8,7 @@ describe("API de UF e Municipios", () => {
 
     //ok
     test("Listar UF",async () => {
-        const resp = await request.get("/uf");
+        const resp = await request.get("/ufs");
         expect(resp.statusCode).toBe(200);
         expect(resp.body).toEqual([
             {
@@ -93,7 +93,7 @@ describe("API de UF e Municipios", () => {
     });
 
     test("Listar Municipio",async () => {
-        const resp = await request.get("/uf/ba");
+        const resp = await request.get("/ufs/ba/municipios");
         expect(resp.statusCode).toBe(200);
         expect(resp.body).toEqual([
             "Abaíra",
