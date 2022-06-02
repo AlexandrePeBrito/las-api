@@ -9,6 +9,7 @@
     "parserOptions": {
         "ecmaVersion": "latest"
     },
+    "ignorePatterns": ["*.json"],
     "rules": {
         "semi": [
             "error",
