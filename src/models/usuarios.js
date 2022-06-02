@@ -171,7 +171,7 @@ class Usuarios {
   }
 
   //ok
-  alterarContatos(id, valores) {
+  async alterarContatos(id, valores) {
     let emailEhValido = false;
 
     if(valores?.email?.length>4){
@@ -197,7 +197,7 @@ class Usuarios {
   }
 
   //ok
-  alterarSenha(id, valores) {
+  async alterarSenha(id, valores) {
     let senhaEhValida = false;
 
     if(valores?.senha?.length > 4){
@@ -228,7 +228,7 @@ class Usuarios {
   }
 
   //ok
-  alterarEndereco(id, valores) {
+  async alterarEndereco(id, valores) {
     let cepEhValido = false;
 
     if(valores.cep.length > 7){
