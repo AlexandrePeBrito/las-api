@@ -67,6 +67,7 @@
     "node-fetch": "^2.6.7",
     "nodemon": "^2.0.15",
     "sqlite3": "^5.0.2",
-    "supertest": "^6.2.3"
+    "supertest": "^6.2.3",
+    "swagger-ui-express": "^4.4.0"
   }
 }

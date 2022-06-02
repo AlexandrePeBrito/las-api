@@ -17,39 +17,21 @@ class Usuarios {
   //ok
   async adicionar(usuario) {
     let nomeEhValido = false;
-    let rgEhValido = false;
-    let cepEhValido = false;
-    let emailEhValido = false;
-    let senhaEhValida = false;
 
-    if (usuario?.nomeCompleto?.length > 4) {
+    if (usuario?.nome?.length > 4) {
       const nomeJaUtilizado = await repositorio.isNomeUsuarioUtilizado(
-        usuario.nomeCompleto
+        usuario.nome
       );
 
       if (!nomeJaUtilizado) {
         nomeEhValido = true;
       }
     }
-   if(usuario?.rg?.length>4){
-      rgEhValido = true;
-    }
-    if(usuario?.cep?.length>7){
-      cepEhValido = true;
-    }
-    if(usuario?.email?.length>4){
-      emailEhValido = true;
-    }
-    if(usuario?.senha?.length>4){
-      senhaEhValida = true;
-    }
 
     const urlEhValida = await this.validarURLFotoPerfil(usuario.urlFotoPerfil);
-    const cpfEhValida = this.validaCPF(usuario.cpf);
-    const dataNasc = this.isDataValidas(usuario.dataNascimento);
     const validacoes = [
       {
-        nome: "Nome Completo",
+        nome: "Nome",
         valido: nomeEhValido,
         mensagem: "Nome deve ser informado e deve ser único",
       },
@@ -57,31 +39,6 @@ class Usuarios {
         nome: "UrlFotoPerfil",
         valido: urlEhValida,
         mensagem: "URL deve uma URL válida",
-      },{
-        nome: "Cpf",
-        valido: cpfEhValida,
-        mensagem: "CPF informado deve ser válido",
-      },
-      {
-        nome: "RG",
-        valido: rgEhValido,
-        mensagem: "RG informado deve ser válido",
-      },{
-        nome: "CEP",
-        valido: cepEhValido,
-        mensagem: "CEP informado deve ser válido",
-      },{
-        nome: "Email",
-        valido: emailEhValido,
-        mensagem: "Email informado deve ser válido",
-      },{
-        nome: "Senha",
-        valido: senhaEhValida,
-        mensagem: "Senha informada deve ser válida",
-      },{
-        nome: "Data de Nascimento",
-        valido: dataNasc,
-        mensagem: "Data de Nascimento informada deve ser válida",
       }
     ];
 
@@ -100,39 +57,21 @@ class Usuarios {
   //ok
   async alterar(id, valores) {
     let nomeEhValido = false;
-    let rgEhValido = false;
-    let cepEhValido = false;
-    let emailEhValido = false;
-    let senhaEhValida = false;
 
-    if (valores?.nomeCompleto?.length > 4) {
+    if (valores?.nome?.length > 4) {
       const nomeJaUtilizado = await repositorio.isNomeUsuarioUtilizado(
-        valores.nomeCompleto
+        valores.nome
       );
 
       if (!nomeJaUtilizado) {
         nomeEhValido = true;
       }
     }
-   if(valores?.rg?.length>4){
-      rgEhValido = true;
-    }
-    if(valores?.cep?.length>7){
-      cepEhValido = true;
-    }
-    if(valores?.email?.length>4){
-      emailEhValido = true;
-    }
-    if(valores?.senha?.length>4){
-      senhaEhValida = true;
-    }
-
+   
     const urlEhValida = await this.validarURLFotoPerfil(valores.urlFotoPerfil);
-    const cpfEhValida = this.validaCPF(valores.cpf);
-    const dataNasc = this.isDataValidas(valores.dataNascimento);
     const validacoes = [
       {
-        nome: "Nome Completo",
+        nome: "Nome",
         valido: nomeEhValido,
         mensagem: "Nome deve ser informado e deve ser único",
       },
@@ -140,31 +79,6 @@ class Usuarios {
         nome: "UrlFotoPerfil",
         valido: urlEhValida,
         mensagem: "URL deve uma URL válida",
-      },{
-        nome: "Cpf",
-        valido: cpfEhValida,
-        mensagem: "CPF informado deve ser válido",
-      },
-      {
-        nome: "RG",
-        valido: rgEhValido,
-        mensagem: "RG informado deve ser válido",
-      },{
-        nome: "CEP",
-        valido: cepEhValido,
-        mensagem: "CEP informado deve ser válido",
-      },{
-        nome: "Email",
-        valido: emailEhValido,
-        mensagem: "Email informado deve ser válido",
-      },{
-        nome: "Senha",
-        valido: senhaEhValida,
-        mensagem: "Senha informada deve ser válida",
-      },{
-        nome: "Data de Nascimento",
-        valido: dataNasc,
-        mensagem: "Data de Nascimento informada deve ser válida",
       }
     ];
 
@@ -206,7 +120,7 @@ class Usuarios {
     let rgEhValido = false;
 
     if (valores?.nomeCompleto?.length > 4) {
-      const nomeJaUtilizado = await repositorio.isNomeUsuarioUtilizado(
+      const nomeJaUtilizado = await repositorio.isNomeCompletoUsuarioUtilizado(
         valores.nomeCompleto
       );
 
@@ -258,12 +172,54 @@ class Usuarios {
 
   //ok
   alterarContatos(id, valores) {
-    return repositorio.alterarContatos(id, valores);
+    let emailEhValido = false;
+
+    if(valores?.email?.length>4){
+      emailEhValido= true;
+    }
+    const validacoes = [
+      {
+        nome: "Email",
+        valido: emailEhValido,
+        mensagem: "Email deve ser informado",
+      }
+    ];
+    const erros = validacoes.filter((campo) => !campo.valido);
+    const existemErros = erros.length > 0;
+
+    if (existemErros) {
+      console.log(erros);
+      throw new Error({ erroApp: erros });
+    } else {
+      const resp =  repositorio.alterarContatos(id, valores);
+      return { id: resp.insertId, ...valores };
+    } 
   }
 
   //ok
   alterarSenha(id, valores) {
-    return repositorio.alterarSenha(id, valores);
+    let senhaEhValida = false;
+
+    if(valores?.senha?.length > 4){
+      senhaEhValida = true;
+    }
+    const validacoes = [
+      {
+        nome: "Senha",
+        valido: senhaEhValida,
+        mensagem: "Senha deve ser ter mais no minimo 5 caracteres",
+      }
+    ];
+    const erros = validacoes.filter((campo) => !campo.valido);
+    const existemErros = erros.length > 0;
+
+    if (existemErros) {
+      console.log(erros);
+      throw new Error({ erroApp: erros });
+    } else {
+      const resp =  repositorio.alterarSenha(id, valores);
+      return { id: resp.insertId, ...valores };
+    } 
   }
 
   //ok
@@ -273,7 +229,28 @@ class Usuarios {
 
   //ok
   alterarEndereco(id, valores) {
-    return repositorio.alterarEndereco(id, valores);
+    let cepEhValido = false;
+
+    if(valores.cep.length > 7){
+      cepEhValido = true;
+    }
+    const validacoes = [
+      {
+        nome: "CEP",
+        valido: cepEhValido,
+        mensagem: "Cep Invalido",
+      }
+    ];
+    const erros = validacoes.filter((campo) => !campo.valido);
+    const existemErros = erros.length > 0;
+
+    if (existemErros) {
+      console.log(erros);
+      throw new Error({ erroApp: erros });
+    } else {
+      const resp =  repositorio.alterarEndereco(id, valores);
+      return { id: resp.insertId, ...valores };
+    } 
   }
 
   async validarURLFotoPerfil(url) {

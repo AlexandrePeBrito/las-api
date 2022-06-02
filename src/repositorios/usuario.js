@@ -3,13 +3,13 @@ const query = require("../infraestrutura/database/queries");
 class Usuario{
     //ok
     listar(){
-        const sql = "SELECT * FROM Usuarios";
+        const sql = "SELECT id,nome,urlFotoPerfil FROM Usuarios";
         return query(sql);
     }
 
     //ok
     buscarPorId(id){
-        const sql = "SELECT * FROM Usuarios WHERE id = ?";
+        const sql = "SELECT id,nome,urlFotoPerfil FROM Usuarios WHERE id = ?";
         return query(sql,id).then((data)=> data[0]);
     }
 
@@ -81,6 +81,15 @@ class Usuario{
     }
 
     isNomeUsuarioUtilizado(nome) {
+        const sql = "SELECT * FROM Usuarios WHERE nome = ?";
+        return query(sql, nome)
+        .then(data=>{
+            return data.length > 0;
+        }); 
+             
+    }
+
+    isNomeCompletoUsuarioUtilizado(nome) {
         const sql = "SELECT * FROM Usuarios WHERE nomeCompleto = ?";
         return query(sql, nome)
         .then(data=>{

@@ -9,12 +9,12 @@ module.exports = (app) => {
   });
 
   //ok
-  app.get("/usuarios/:id", (req, res, next) => {
+  app.get("/usuarios/:id", (req, res) => {
     const id = parseInt(req.params.id);
 
     Usuarios.buscarPorId(id, res)
       .then((usuario) => (usuario ? res.json(usuario) : res.status(404).send()))
-      .catch((erros) => next(erros));
+      .catch((erros) => res.status(400).json(erros));
   });
 
   //ok
@@ -78,7 +78,7 @@ module.exports = (app) => {
       .catch((erros) => res.status(400).json(erros));
   });
 
-  //ok
+  //executa tudo mas retorna error
   app.put("/usuarios/:id/contatos", (req, res) => {
     const id = parseInt(req.params.id);
     const valores = req.body;
@@ -86,8 +86,8 @@ module.exports = (app) => {
       .then(() => res.status(200).json({ id, ...valores }))
       .catch((erros) => res.status(400).json(erros));
   });
-
-  //ok
+  
+  //executa tudo mas retorna error
   app.put("/usuarios/:id/senha", (req, res) => {
     const id = parseInt(req.params.id);
     const valores = req.body;
@@ -105,7 +105,7 @@ module.exports = (app) => {
       .catch((erros) => res.status(400).json(erros));
   });
 
-  //ok
+  //executa tudo mas retorna error
   app.put("/usuarios/:id/endereco", (req, res) => {
     const id = parseInt(req.params.id);
     const valores = req.body;

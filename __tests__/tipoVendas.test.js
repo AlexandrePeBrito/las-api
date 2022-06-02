@@ -8,7 +8,7 @@ describe("API de Tipo de vendas", () => {
 
   //ok
   test("Listar Tipo de vendas",async () => {
-      const resp = await request.get("/tipos-vendas");
+      const resp = await request.get("/tipos-venda");
       expect(resp.statusCode).toBe(200);
       expect(resp.body).toEqual([
           {
